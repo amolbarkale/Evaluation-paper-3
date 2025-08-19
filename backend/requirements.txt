@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 sqlalchemy
+sqlmodel
 langchain
 langchain-community==0.3.27
 langchain-google-genai

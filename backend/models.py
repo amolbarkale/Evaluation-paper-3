@@ -1,37 +1,54 @@
-from typing import List
+import datetime
+from sqlmodel import Field, SQLModel
 import datetime
 
-class Users:
-    id: int 
-    username: str 
+class User(SQLModel, table=True):
+
+    __tablename__ = "user"
+    id: int | None = Field(default=None, primary_key=True) 
+    username: str = Field(index=True)
     email: str 
     password: str 
-    age: int 
+    age: int | None = Field(default=None, index=True) 
     weight: int 
     height: int 
-    goals: List[str]
+    goals: str
 
-class Workouts:
-    id: int 
+class Workouts(SQLModel, table=True):
+
+    __tablename__ = "workouts"
+    id: int | None = Field(default=None, primary_key=True) 
     user_id: int 
     plan_name: str 
     date: datetime 
     exercises: int 
     duration: int
 
-class Nutrition:
-    id:int
+class Nutrition(SQLModel, table=True):
+
+    __tablename__ = "nutrition"
+    id: int | None = Field(default=None, primary_key=True) 
     user_id:int
     date:datetime
-    meals: List[str]
-    calories: List[str]
-    macros: List[str]
+    meals: str
+    calories: str
+    macros: str
 
 class Progress:
+    __tablename__ = "progress"
+    id: int | None = Field(default=None, primary_key=True) 
+
+    user_id: int
+    workout_id: int
+    sets: int
+    reps: int
+    weights: int
+    notes: str
+
     id: int
     user_id: int
     workout_id: int
     sets: int
     reps: int
     weights: int
-    notes: List[str]
+    notes: str
