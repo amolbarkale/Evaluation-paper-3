@@ -14,10 +14,6 @@ csv = loader.load()
 print(csv[0].page_content[:100])
 print(csv[0].metadata)
 
-text_split = RecursiveCharacterTextSplitter(
-    chunk_size = 1000,
-    chunk_overlap= 200
-)
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=100,
     chunk_overlap=20,
