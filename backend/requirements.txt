@@ -2,6 +2,7 @@ fastapi
 uvicorn
 langchain
 langchain-community==0.3.27
-langchain_google_genai
+langchain-google-genai
 python-dotenv
 langchain-qdrant
+langchain_qdrant
