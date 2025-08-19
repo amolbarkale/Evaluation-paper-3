@@ -8,6 +8,7 @@ Core Features -
 
 1. Backend (FastAPI + Python)
 2. DB design
-3. RAG
+3. Qdrant DB (Vector Store)
+4. RAG
 5. Frontend
 
