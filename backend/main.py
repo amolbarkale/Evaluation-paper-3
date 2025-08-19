@@ -16,17 +16,6 @@ def on_startup():
     create_db_and_tables()
 
 #_________________________________________________________________________
-# Authentication
-# POST /auth/register - User registration
-# POST /auth/login - User login
-# GET /auth/user/{user_id} - Get user profile
-
-# Core CRUD
-# GET/POST/PUT/DELETE /workouts - Workout management
-# GET/POST/PUT/DELETE /exercises - Exercise database
-# GET/POST/PUT/DELETE /nutrition - Nutrition logging
-# GET/POST/PUT/DELETE /progress - Progress tracking
-#_________________________________________________________________________
 
 @app.get("/exercise/{user_id}")
 def read_exercises(user_id: int, session: SessionDep) -> User:
@@ -43,7 +32,7 @@ def create_user(user: User, session: SessionDep) -> User:
     return user
 
 @app.put("/exercise/{exercise_id}", responses={403: {"description": "Operation forbidden"}})
-async def update_item(exercise_id: str):
+async def update_exercise(exercise_id: str):
     if not exercise_id:
         raise HTTPException(
             status_code=403, detail="You can only update the exercise"
@@ -72,7 +61,7 @@ def delete_exercise(exercise_id: int, session: SessionDep):
 
 @app.get("/nutrition/{user_id}")
 def read_nutrition(user_id: int, session: SessionDep) -> User:
-    user = session.get(Progress, user_id)
+    user = session.get(Nutrition, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="exercise not found")
     return user
@@ -88,7 +77,7 @@ async def update_nutrition(nutrition: str):
 
 @app.delete("/nutrition/{nutrition_id}")
 def delete_nutrition(nutrition_id: int, session: SessionDep):
-    exerccise = session.get(Progress, nutrition_id)
+    exerccise = session.get(Nutrition, nutrition_id)
     if not exerccise:
         raise HTTPException(status_code=404, detail="nutrition not found")
     session.delete(exerccise)
